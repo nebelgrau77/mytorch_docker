@@ -19,7 +19,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
     # && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # install Jupyter Notebook
-RUN conda install Jupyter
+RUN conda install jupyter
+RUN conda install jupyterlab
 
 # expose the port
 EXPOSE 8888

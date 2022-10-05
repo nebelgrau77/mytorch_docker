@@ -10,4 +10,4 @@ services:
     volumes:
       - "./:/home/${USERNAME}/work"
     working_dir: /home/${USERNAME}/work/notebooks        
-    command: jupyter notebook --ip 0.0.0.0
+    command: jupyter notebook -e JUPYTER_ENABLE_LAB=yes --ip 0.0.0.0 
