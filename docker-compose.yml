@@ -1,0 +1,13 @@
+version: "3"
+services:
+  jupyter_ds:
+    build: ./pytorch
+    #restart: unless-stopped
+    container_name: mytorch  
+    ports:
+      - "8888:8888"
+    user: nebelgrau
+    volumes:
+      - "./:/home/${USERNAME}/work"
+    working_dir: /home/${USERNAME}/work/notebooks        
+    command: jupyter notebook --ip 0.0.0.0
