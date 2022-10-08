@@ -1,6 +1,6 @@
 version: "3"
 services:
-  jupyter_ds:
+  jupyter:
     build: ./pytorch
     #restart: unless-stopped
     container_name: mytorch  
@@ -10,4 +10,13 @@ services:
     volumes:
       - "./:/home/${USERNAME}/work"
     working_dir: /home/${USERNAME}/work/notebooks        
-    command: jupyter notebook -e JUPYTER_ENABLE_LAB=yes --ip 0.0.0.0 
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+    command: jupyter-notebook -e JUPYTER_ENABLE_LAB=yes --NotebookApp.base_url=jupyter --NotebookApp.default_url=lab --ip 0.0.0.0 

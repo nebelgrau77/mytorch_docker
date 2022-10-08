@@ -25,5 +25,8 @@ RUN conda install jupyterlab
 # expose the port
 EXPOSE 8888
 
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
 # set the default user
 USER $USERNAME
