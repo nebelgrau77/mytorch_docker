@@ -6,7 +6,7 @@ services:
     container_name: mytorch  
     ports:
       - "8888:8888"
-    user: nebelgrau
+    user: your_user_name
     volumes:
       - "./:/home/${USERNAME}/work"
     working_dir: /home/${USERNAME}/work/notebooks        

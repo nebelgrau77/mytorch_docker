@@ -2,7 +2,7 @@
 FROM pytorch/pytorch
 
 # some environment variables
-ARG USERNAME=nebelgrau
+ARG USERNAME=your_user_name
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
