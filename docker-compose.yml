@@ -1,16 +1,22 @@
 version: "3"
 services:
   jupyter:
-    build: ./pytorch
+    build: 
+      context: ./pytorch
+      args:
+        - USERNAME=${NB_USER}
     #restart: unless-stopped
     container_name: mytorch  
     ports:
-      - "8888:8888"
-    user: nebelgrau
+      - "${JUPYTER_PORT}:8888"
+    user: ${NB_USER}
     volumes:
-      - "./:/home/${USERNAME}/work"
-    working_dir: /home/${USERNAME}/work/notebooks        
-
+      - "./:/home/${NB_USER}/work"
+    working_dir: /home/${NB_USER}/work/notebooks        
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+    
     deploy:
       resources:
         reservations:
@@ -19,4 +25,4 @@ services:
               count: 1
               capabilities: [gpu]
 
-    command: jupyter-notebook -e JUPYTER_ENABLE_LAB=yes --NotebookApp.base_url=jupyter --NotebookApp.default_url=lab --ip 0.0.0.0 
+    command: jupyter-notebook --NotebookApp.base_url=jupyter --NotebookApp.default_url=lab --ip 0.0.0.0 
